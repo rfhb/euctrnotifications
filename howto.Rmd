@@ -85,9 +85,13 @@ digraph overview {
 
 - The clipboard of the computer now contains the link to a newsfeed for this search. It will be used in the next steps. Example: https://www.clinicaltrialsregister.eu/ctr-search/rest/feed/bydates?query=cystic+fibrosis. ![copyurl](euctr1.jpg)
 
-## 2.a. Email with updates
+## 2. User once configures a notification system 
 
-These notifications are based on services on the internet that offer to generate emails from a newsfeed such as prepared in step 1. There are a number of such services on the internet, some are free and some do not require registration. Such as service is here to exemplify the principle but others can be used and this example does not imply any recommendation. 
+The following three approaches are *alternatives* for how users can select and configure how they want to be notified. 
+
+### a. Email with updates
+
+These notifications are based on services on the internet that offer to generate emails from a newsfeed such as prepared in step 1. There are a number of such services on the internet, some are free and some do not require registration. Such a free service is used here to exemplify the principle but others can be used; this example does not imply any recommendation. 
 
 - Open the start page of [Blogtrottr](https://blogtrottr.com/). 
 
@@ -102,7 +106,7 @@ These notifications are based on services on the internet that offer to generate
 - To control (stop / unsubscribe or change / manage) the notifications, click the relevant link at the bottom of every email from this service. An example is the following screenshot. ![email1](email1.jpg)
 
 
-## 2.b. Actions on smartphone
+### b. Actions on smartphone
 
 For more sophisticated control and personal user experience, other services on the internet can be used, such as [IFTTT](https://ifttt.com/) which allows to trigger a range of complex actions on different devices. However, this service also can send emails in the same way as described above, and this is shown in this step as a minimalistic example. This service is used for the example here; note it requires registration. 
 
@@ -113,7 +117,7 @@ For more sophisticated control and personal user experience, other services on t
 - Click on "that". Find and chose action "Email". Click on "Create Action". Click on "Create Recipe". Many other actions are offered by this service such as adding notificatiosn to the iOS Reminders app on a user's smart phone. An overview of this simple example is in the screenshot below. ![ifttt1](ifttt1.jpg)
 
 
-## 2.c. Personalised webpage use
+### c. Personalised webpage use
 
 The link to the newsfeed created in step 1 can also be used as follows with other services on the internet, for example: 
 
