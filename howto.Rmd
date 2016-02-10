@@ -1,5 +1,5 @@
 ---
-title: "How to obtain personalised updates from EU Clinical Trials Register"
+title: "How to obtain automatically personalised updates from EU Clinical Trials Register"
 author: "Ralf Herold"
 date: "`r file.info('howto.Rmd')$mtime`"
 output: 
@@ -10,7 +10,15 @@ params:
 ---
 
 ```{r setup, include=FALSE}
+#
 knitr::opts_chunk$set(echo = FALSE)
+#
+if(interactive()) {
+  httr::set_config (use_proxy ("myproxyhere", 8080))
+  devtools::install_github("rich-iannone/DiagrammeR")
+  devtools::install_github('rich-iannone/DiagrammeRsvg')
+}
+#
 # command line set up:
 # git config --global credential.helper wincred
 # git remote add origin https://github.com/rfhb/euctrnotifications.git
@@ -29,52 +37,50 @@ Suggestions, comments and queries concerning this how-to are welcome. Please cli
 
 # Overview
 
-This diagramme is meant to indicate the steps (from top to bottom) and notifications options (squares) described in this document. 
-
-```{r overviewdiagram}
+```{r overviewdiagram, include=FALSE}
 suppressWarnings({
-  library(DiagrammeR, verbose = FALSE)
+  # to avoid cluttering the rendered document
+  library(DiagrammeR)
+  # library(DiagrammeRsvg)
 })
 
-grViz('
-digraph overview {
-  # this does not follow a particular 
-  # graphic methodology but just 
-  # collects the elements 
+# implementation changed to save bitmapped format 
+# in order to improve compatibilty with old browsers
 
-  graph [overlap = true]
+nodes <- create_nodes(
+  nodes = c("euctr", "bt", "iftt", "other", 
+            "email", "action", "page", "outp", 
+            "query"),
+  label =   c(
+    "EU Clinical\nTrials Register", "Blogtrottr", "IFTT", "Other\nwebservice", 
+    "Email with\nupdates","Actions on\nsmartphone","Personalised\nwebpage","Other\noutput",
+    "User once\nfinds trials"),
+  shape = c("parallelogram", "rectangle", "rectangle", "rectangle", 
+            "circle", "circle", "circle", "circle",  
+            "circle"),
+  width = c (2, 1, 1, 1, 1, 1, 1, 1, 1)
+)
 
-  node [shape = parallelogram, fontname = Helvetica, fontsize = 12, fixedsize = true, height = 1, width = 2]
-    euctr [label = "EU Clinical\nTrials Register"]
+edges <- create_edges(
+  from = c("query", "euctr", "euctr", "euctr", "euctr", "bt", "iftt", "other"),
+  to =   c("euctr", "bt", "iftt", "other", "page", "email", "action", "outp"),
+  rel = "leading_to"
+  )
 
-  node [shape = rect, fontname = Helvetica, fontsize = 12, fixedsize = true, height = 1, width = 1]
-    bt    [label = "Blogtrottr"]
-    iftt  [label = "IFTT"]
-    other [label = "Other\nwebservice"]
+graph <- create_graph(
+  nodes_df = nodes,
+  edges_df = edges,
+  node_attrs = "fontname = Helvetica, fontsize = 12, fixedsize = true, height = 1",
+  edge_attrs = c("arrowsize = 1")
+  )
 
-  node [shape = circle, fontname = Helvetica, fontsize = 12, fixedsize = true, height = 1, width = 1]
-    email  [label = "Email with\nupdates"]
-    action [label = "Actions on\nsmartphone"]
-    page   [label = "Personalised\nwebpage"]
-    outp   [label = "Other\noutput"]
-    query  [label = "User once\nfinds trials"]
+if(interactive())grViz(graph$dot_code)
 
-  # edge statements
-   query -> euctr
-
-   euctr -> bt
-   euctr -> iftt
-   euctr -> other
-   euctr -> page
-
-   bt    -> email
-   iftt  -> action
-   other -> outp
-
-}
-')
+export_graph(graph, file_name = "overview1.png")
 
 ```
+
+This diagramme is meant to indicate the steps (from top to bottom) and notifications options (squares) described in this document. ![overview](overview1.png)
 
 # Setting up notifications - step by step
 
@@ -86,7 +92,7 @@ digraph overview {
 
 - The clipboard of the computer now contains the link to a newsfeed for this search. It will be used in the next steps. Example: https://www.clinicaltrialsregister.eu/ctr-search/rest/feed/bydates?query=cystic+fibrosis. ![copyurl](euctr1.jpg)
 
-## 2. User once configures a notification system 
+## 2. User once configures a notification system (a, b or c)
 
 The following three approaches are *alternatives* for how users can select and configure how they want to be notified. 
 
