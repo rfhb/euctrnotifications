@@ -12,6 +12,7 @@ params:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 # command line set up:
+# git config --global credential.helper wincred
 # git remote add origin https://github.com/rfhb/euctrnotifications.git
 # git pull -u origin master
 # git push -u origin master
