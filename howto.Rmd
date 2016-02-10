@@ -1,0 +1,128 @@
+---
+title: "How to obtain personalised updates from EU Clinical Trials Register"
+author: "Ralf Herold"
+date: "`r file.info('howto.Rmd')$mtime`"
+output: html_document
+params: 
+  output_dir = "`r getwd ()`"
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Objective
+
+The purpose of this document is to describe how a user can set up personalised notifications to obtain updates on clinical trials of interest. This is based on protocol-related information that is made publicly available in the EU Clinical Trials Register [EUCTR](https://www.clinicaltrialsregister.eu/). The licence of this document (Apache 2.0) can be found [here](https://github.com/rfhb/euctrnotifications/blob/master/LICENSE).
+
+```{r cars}
+summary(cars)
+```
+
+# Overview
+
+Also diagrammes will be included into the how to. 
+
+```{r overviewdiagram, fig.height=10}
+suppressWarnings({
+  library(DiagrammeR, verbose = FALSE)
+})
+
+grViz('
+digraph overview {
+  # this does not follow a particular 
+  # graphic methodology but just 
+  # collects the elements 
+
+  graph [overlap = true, fontsize = 10]
+
+  node [shape = parallelogram, fontname = Helvetica]
+  "EU Clinical Trials Register" 
+
+  node [shape = rect, fontname = Helvetica]
+  "Blogtrottr";"IFTT";"Other webservice"
+
+  node [shape = circle, fixedsize = true, width = 0.9]
+  "Email with updates";"Actions smartphone"
+
+  # edge statements
+  "EU Clinical Trials Register" -> "Blogtrottr"
+  "EU Clinical Trials Register" -> "IFTT"
+  "EU Clinical Trials Register" -> "Other webservice"
+
+  "User sets up" -> "Blogtrottr"
+  "User sets up" -> "IFTT"
+  "User sets up" -> "Other webservice"
+
+  "Blogtrottr" -> "Email with updates"
+  "IFTT" -> "Actions smartphone"
+  "Other webservice" -> "Email with updates"
+
+}
+')
+
+
+# mermaid("
+# graph LR
+# A(EU Clinical Trials Register)-->B[Rectangular]
+# A-->C{A Rhombus}
+# C---D[Rectangle One]
+# C-->E[Rectangle Two]
+# ")
+
+
+
+
+
+
+# grViz("
+# digraph boxes_and_circles {
+# 
+#   # a 'graph' statement
+#   graph [overlap = true, fontsize = 10]
+# 
+#   # several 'node' statements
+#   node [shape = box,
+#         fontname = Helvetica]
+#   A; B; C; D; E; F
+# 
+#   node [shape = circle,
+#         fixedsize = true,
+#         width = 0.9] // sets as circles
+#   1; 2; 3; 4; 5; 6; 7; 8
+# 
+#   # several 'edge' statements
+#   A->1 B->2 B->3 B->4 C->A
+#   1->D E->A 2->4 1->5 1->F
+#   E->6 4->6 5->7 6->7 3->8
+# }
+# ")
+
+
+```
+
+# Step by step
+
+## Notification by email
+
+
+
+## Notification in a browser
+
+
+
+## Notification using general systems 
+
+Here the approach using IFTTT will be described. 
+
+# Comments on this document
+
+Comments and queries concerning this how-to are welcome. Please click here ()[] and search for an issue or open a new issue. The author will be automatically informed. 
+
+End. 
+
+
+
+
+
