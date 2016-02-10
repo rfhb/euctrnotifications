@@ -130,7 +130,7 @@ The link to the newsfeed created in step 1 can also be used as follows with othe
 
 - It can be added to a browser-based newsreader such as [feedly](https://feedly.com/i/latest), see following screenshot. ![feedly1](feedly1.jpg)
 
-- It can be added to news apps such as Reeder, see following screenshot. ![reeder1](reeder1.jpg){ width=30% }
+- It can be added to news apps such as Reeder, see following screenshot. ![reeder1](reeder1.jpg)
 
 End.
 
