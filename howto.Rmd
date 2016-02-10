@@ -39,59 +39,55 @@ digraph overview {
   # graphic methodology but just 
   # collects the elements 
 
-  graph [overlap = true, fontsize = 10]
+  graph [overlap = true]
 
-  node [shape = parallelogram, fontname = Helvetica]
-  "EU Clinical Trials Register" 
+  node [shape = parallelogram, fontname = Helvetica, fontsize = 12, fixedsize = true, height = 1, width = 2]
+    euctr [label = "EU Clinical\nTrials Register"]
 
-  node [shape = rect, fontname = Helvetica]
-  "Blogtrottr";"IFTT";"Other webservice"
+  node [shape = rect, fontname = Helvetica, fontsize = 12, fixedsize = true, height = 1, width = 1]
+    bt    [label = "Blogtrottr"]
+    iftt  [label = "IFTT"]
+    other [label = "Other\nwebservice"]
 
-  node [shape = circle, fixedsize = true, width = 0.9]
-  "Email with updates";"Actions smartphone"
+  node [shape = circle, fontname = Helvetica, fontsize = 12, fixedsize = true, height = 1, width = 1]
+    email  [label = "Email with\nupdates"]
+    action [label = "Actions on\nsmartphone"]
+    page   [label = "Personalised\nwebpage"]
+    outp   [label = "Other\noutput"]
+    query  [label = "User once finds\nrelevant trials"]
 
   # edge statements
-  "EU Clinical Trials Register" -> "Blogtrottr"
-  "EU Clinical Trials Register" -> "IFTT"
-  "EU Clinical Trials Register" -> "Other webservice"
+   query -> euctr
 
-  "User sets up" -> "Blogtrottr"
-  "User sets up" -> "IFTT"
-  "User sets up" -> "Other webservice"
+   euctr -> bt
+   euctr -> iftt
+   euctr -> other
+   euctr -> page
 
-  "Blogtrottr" -> "Email with updates"
-  "IFTT" -> "Actions smartphone"
-  "Other webservice" -> "Email with updates"
+   bt    -> email
+   iftt  -> action
+   other -> outp
 
 }
 ')
 
-
-
-
 ```
 
-# Step by step
+# Setting up notifications - step by step
 
-## Notification by email
+## 1. User once defines relevant trials
 
+## 2.a. Email with updates
 
-
-## Notification in a browser
-
-
-
-## Notification using general systems 
+## 2.b. Actions on smartphone
 
 Here the approach using IFTTT will be described. 
 
+## 2.c. Personalised webpage
+
 # Comments on this document
 
-Comments and queries concerning this how-to are welcome. Please click here ()[] and search for an issue or open a new issue. The author will be automatically informed. 
+Comments and queries concerning this how-to are welcome. Please click [here](https://github.com/rfhb/euctrnotifications/issues), where you can search for an issue or open a new issue. The author will be automatically informed. 
 
-End. 
-
-
-
-
+End.
 
