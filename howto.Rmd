@@ -1,11 +1,12 @@
 ---
-title: "How to obtain automatically personalised updates from EU Clinical Trials Register"
+title: How to obtain automatically personalised updates from the European Union's
+  Clinical Trials Register
 author: "Ralf Herold"
 date: '`r file.info("howto.Rmd")$mtime`'
 output:
-  html_document:
-    toc: yes
   word_document:
+    toc: yes
+  html_document:
     toc: yes
 params: output_dir = "`r getwd ()`"
 ---
@@ -32,6 +33,8 @@ if(interactive()) {
 The purpose of this document is to describe how a user can set up personalised notifications to automatically obtain updates on clinical trials of interest. This is based on protocol-related information that is made publicly available in the EU Clinical Trials Register [EUCTR](https://www.clinicaltrialsregister.eu/). The licence of this document (Apache 2.0) can be found [here](https://github.com/rfhb/euctrnotifications/blob/master/LICENSE).
 
 The permanent link to this document is [https://rawgit.com/rfhb/euctrnotifications/master/howto.html](https://rawgit.com/rfhb/euctrnotifications/master/howto.html).
+
+The permanent link to a *docx* document is [https://rawgit.com/rfhb/euctrnotifications/master/howto.docx](https://rawgit.com/rfhb/euctrnotifications/master/howto.docx).
 
 Suggestions, comments and queries concerning this how-to are welcome. Please click [here](https://github.com/rfhb/euctrnotifications/issues), where you can search for an issue or open a new issue. The author will be automatically informed. 
 
@@ -87,21 +90,21 @@ This diagramme is meant to indicate the steps (from top to bottom) and notificat
 
 ## 1. User once defines relevant trials
 
-- Do a search in the EU Clinical Trials Register, start [here](https://www.clinicaltrialsregister.eu/ctr-search/search). Refine the search until search parameters find relevant trials. 
+- Do a search in the EU Clinical Trials Register, start [here](https://www.clinicaltrialsregister.eu/ctr-search/search). Refine the search until search parameters find relevant trials. For example, this is a search for clinical trials with the paediatric population of orphan-designated investigational medicnal products: [https://www.clinicaltrialsregister.eu/ctr-search/search?query=&age=under-18&orphanimp=true](https://www.clinicaltrialsregister.eu/ctr-search/search?query=&age=under-18&orphanimp=true). 
 
 - In the grey box on the right hand side, do a secondary (right) mouse click on the word "here" in the sentence "To subscribe to the RSS feed for this search click here". Then click on "Copy Link Location" (or corresponding item) as shown in screenshot below. 
 
-- The clipboard of the computer now contains the link to a newsfeed for this search. It will be used in the next steps. Example: clinical trials with the paediatric population of orphan-designated investigational medicnal products,  https://www.clinicaltrialsregister.eu/ctr-search/search?query=&age=under-18&orphanimp=true.  ![copyurl](euctr1.jpg)
+- The clipboard of the computer now contains the link to a newsfeed for this search. It will be used in the next steps. ![copyurl](euctr1.jpg)
 
 ## 2. User once configures a notification system (a, b or c)
 
-The following three approaches are *alternatives* for how users can select and configure how they want to be notified. 
+The following three approaches are *alternatives* for users to select and configure how they want to be notified. 
 
 ### a. Email with updates
 
-These notifications are based on services on the internet that offer to generate emails from a newsfeed such as prepared in step 1. There are a number of such services on the internet, some are free and some do not require registration. Such a free service is used here to exemplify the principle but others can be used; this example does not imply any recommendation. 
+These notifications are based on services on the internet that offer to generate emails from a newsfeed such as prepared in step 1. There are a number of such services on the internet, some are free and some do not require registration. An example of a free service is used here to show the principle but other services can be used in a similar way; the example does not imply any recommendation. 
 
-- Open the start page of Blogtrottr [https://blogtrottr.com/](https://blogtrottr.com/). 
+- Open the start page of Blogtrottr ([https://blogtrottr.com/](https://blogtrottr.com/)). 
 
 - Where it reads "http://", paste the content of the clipboard; this replaces all text with the link to the newsfeed generated in the step 1. 
 
@@ -116,20 +119,20 @@ These notifications are based on services on the internet that offer to generate
 
 ### b. Actions on smartphone
 
-For more sophisticated control and personal user experience, other services on the internet can be used, such as [IFTTT](https://ifttt.com/) which allows to trigger a range of complex actions on different devices. However, this service also can send emails in the same way as described above, and this is shown in this step as a minimalistic example. This service is used for the example here; note it requires registration. 
+For more sophisticated control and personal user experience, other services on the internet can be used. An example is [IFTTT](https://ifttt.com/), which allows to trigger a range of complex actions on different devices. However, this service also can send emails in the same way as described above, and this is shown in this step as a minimalistic example. This service is used for the example here; note it requires registration. 
 
-- Open the start page of [IFTTT](https://ifttt.com/) and sign in or sign up, if not yet registered. 
+- Open the start page of IFTTT ([https://ifttt.com/](https://ifttt.com/)) and sign in or sign up, if not yet registered. 
 
 - Click on "Create Recipe". Click on "this". Scroll down and chose trigger channel "Feed". Click on "New feed item". Paste the contents of the clipboard from step 1. into the box "Feed URL". Click on "Create Trigger". 
 
-- Click on "that". Find and chose action "Email". Click on "Create Action". Click on "Create Recipe". Many other actions are offered by this service such as adding notificatiosn to the iOS Reminders app on a user's smart phone. An overview of this simple example is in the screenshot below. ![ifttt1](ifttt1.jpg)
+- Click on "that". Find and chose action "Email". Click on "Create Action". Click on "Create Recipe". Many other actions are offered by this service such as adding notifications to the iOS Reminders app on a user's smart phone. An overview of this simple example is in the screenshot below. ![ifttt1](ifttt1.jpg)
 
 
 ### c. Personalised webpage use
 
 The link to the newsfeed created in step 1 can also be used as follows with other services on the internet, for example: 
 
-- It can be added to a browser-based newsreader such as [feedly](https://feedly.com/i/latest), see following screenshot. ![feedly1](feedly1.jpg)
+- It can be added to a browser-based newsreader such as feedly ([https://feedly.com/i/latest](https://feedly.com/i/latest)), see following screenshot. ![feedly1](feedly1.jpg)
 
 - It can be added to news apps such as Reeder, see following screenshot. ![reeder1](reeder1.jpg)
 
