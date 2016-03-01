@@ -3,9 +3,9 @@ title: "How to obtain automatically personalised updates from EU Clinical Trials
 author: "Ralf Herold"
 date: '`r file.info("howto.Rmd")$mtime`'
 output:
-  word_document:
-    toc: yes
   html_document:
+    toc: yes
+  word_document:
     toc: yes
 params: output_dir = "`r getwd ()`"
 ---
@@ -91,7 +91,7 @@ This diagramme is meant to indicate the steps (from top to bottom) and notificat
 
 - In the grey box on the right hand side, do a secondary (right) mouse click on the word "here" in the sentence "To subscribe to the RSS feed for this search click here". Then click on "Copy Link Location" (or corresponding item) as shown in screenshot below. 
 
-- The clipboard of the computer now contains the link to a newsfeed for this search. It will be used in the next steps. Example: https://www.clinicaltrialsregister.eu/ctr-search/rest/feed/bydates?query=cystic+fibrosis. ![copyurl](euctr1.jpg)
+- The clipboard of the computer now contains the link to a newsfeed for this search. It will be used in the next steps. Example: clinical trials with the paediatric population of orphan-designated investigational medicnal products,  https://www.clinicaltrialsregister.eu/ctr-search/search?query=&age=under-18&orphanimp=true.  ![copyurl](euctr1.jpg)
 
 ## 2. User once configures a notification system (a, b or c)
 
@@ -101,7 +101,7 @@ The following three approaches are *alternatives* for how users can select and c
 
 These notifications are based on services on the internet that offer to generate emails from a newsfeed such as prepared in step 1. There are a number of such services on the internet, some are free and some do not require registration. Such a free service is used here to exemplify the principle but others can be used; this example does not imply any recommendation. 
 
-- Open the start page of [Blogtrottr](https://blogtrottr.com/). 
+- Open the start page of Blogtrottr [https://blogtrottr.com/](https://blogtrottr.com/). 
 
 - Where it reads "http://", paste the content of the clipboard; this replaces all text with the link to the newsfeed generated in the step 1. 
 
