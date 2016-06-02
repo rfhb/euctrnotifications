@@ -6,6 +6,8 @@ date: '`r file.info("howto.Rmd")$mtime`'
 output:
   word_document:
     toc: yes
+  pdf_document:
+    toc: yes
   html_document:
     toc: yes
 params: output_dir = "`r getwd ()`"
@@ -16,27 +18,31 @@ params: output_dir = "`r getwd ()`"
 knitr::opts_chunk$set(echo = FALSE)
 #
 if(interactive()) {
-  httr::set_config (use_proxy ("myproxyhere", 8080))
+  #httr::set_config (use_proxy ("myproxyhere", 8080))
   devtools::install_github("rich-iannone/DiagrammeR")
   devtools::install_github('rich-iannone/DiagrammeRsvg')
-}
+  }
 #
 # command line set up:
 # git config --global credential.helper wincred
 # git remote add origin https://github.com/rfhb/euctrnotifications.git
 # git pull -u origin master
 # git push -u origin master
+#
+# for manual line breaks insert two spaces at the end of a line!
+#
 ```
+
 
 # Objective and feedback
 
-The purpose of this document is to describe how a user can set up personalised notifications to automatically obtain updates on clinical trials of interest. This is based on protocol-related information that is made publicly available in the EU Clinical Trials Register [EUCTR](https://www.clinicaltrialsregister.eu/). The licence of this document (Apache 2.0) can be found [here](https://github.com/rfhb/euctrnotifications/blob/master/LICENSE).
+The purpose of this document is to describe how a user can set up personalised notifications to automatically obtain updates on clinical trials of interest. This is based on protocol-related information that is made publicly available in the EU Clinical Trials Register [EUCTR, https://www.clinicaltrialsregister.eu/](https://www.clinicaltrialsregister.eu/). 
 
-The permanent link to this document is [https://rawgit.com/rfhb/euctrnotifications/master/howto.html](https://rawgit.com/rfhb/euctrnotifications/master/howto.html).
-
-The permanent link to a *docx* document is [https://rawgit.com/rfhb/euctrnotifications/master/howto.docx](https://rawgit.com/rfhb/euctrnotifications/master/howto.docx).
+The licence of this documentation (Apache 2.0) can be found [here](https://github.com/rfhb/euctrnotifications/blob/master/LICENSE). The permanent link to the documentation is [https://rawgit.com/rfhb/euctrnotifications/](https://rawgit.com/rfhb/euctrnotifications/). The permanent link to the *docx* document is [https://rawgit.com/rfhb/euctrnotifications/master/howto.docx](https://rawgit.com/rfhb/euctrnotifications/master/howto.docx).
 
 Suggestions, comments and queries concerning this how-to are welcome. Please click [here](https://github.com/rfhb/euctrnotifications/issues), where you can search for an issue or open a new issue. The author will be automatically informed. 
+
+This how-to can in principle also be used with other trial registers, for example the [U.S. Clinical Trials Register](https://clinicaltrials.gov/ct2/resources/rss#RSSFeedForSpecificSearch). 
 
 
 # Overview
@@ -45,36 +51,37 @@ Suggestions, comments and queries concerning this how-to are welcome. Please cli
 suppressWarnings({
   # to avoid cluttering the rendered document
   library(DiagrammeR)
-  # library(DiagrammeRsvg)
+  library(DiagrammeRsvg)
 })
 
 # implementation changed to save bitmapped format 
 # in order to improve compatibilty with old browsers
 
 nodes <- create_nodes(
-  nodes = c("euctr", "bt", "iftt", "other", 
+  nodes = c("euctr", "bt", "iftt", "ff", "other", 
             "email", "action", "page", "outp", 
             "query"),
   label =   c(
-    "EU Clinical\nTrials Register", "Blogtrottr", "IFTT", "Other\nwebservice", 
-    "Email with\nupdates","Actions on\nsmartphone","Personalised\nwebpage","Other\noutput",
+    "RSS link from\nEU Clinical\nTrials Register", "Blogtrottr", "IFTT",  "Own browser", "Other\nwebservice",
+    "Email with\nupdates", "Actions on\nsmartphone", "Personalised\nwebpage", "Other\noutput",
     "User once\nfinds trials"),
-  shape = c("parallelogram", "rectangle", "rectangle", "rectangle", 
+  shape = c("parallelogram", 
+            "rectangle", "rectangle", "rectangle", "rectangle", 
             "circle", "circle", "circle", "circle",  
             "circle"),
-  width = c (2, 1, 1, 1, 1, 1, 1, 1, 1)
+  width = c (2, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 )
 
 edges <- create_edges(
-  from = c("query", "euctr", "euctr", "euctr", "euctr", "bt", "iftt", "other"),
-  to =   c("euctr", "bt", "iftt", "other", "page", "email", "action", "outp"),
+  from = c("query", "euctr", "euctr", "euctr", "euctr",   "ff",    "bt",   "iftt", "other"),
+  to =   c("euctr",    "bt",  "iftt", "other",    "ff", "page", "email", "action", "outp"),
   rel = "leading_to"
   )
 
 graph <- create_graph(
   nodes_df = nodes,
   edges_df = edges,
-  node_attrs = "fontname = Helvetica, fontsize = 12, fixedsize = true, height = 1",
+  node_attrs = "fontname = Helvetica, fontsize = 11, fixedsize = true, height = 1",
   edge_attrs = c("arrowsize = 1")
   )
 
@@ -84,7 +91,9 @@ export_graph(graph, file_name = "overview1.png")
 
 ```
 
-This diagramme is meant to indicate the steps (from top to bottom) and notifications options (squares) described in this document. ![overview](overview1.png)
+These are the steps (top to bottom) and notifications options (squares) described in this document. 
+![overview](overview1.png)
+
 
 # Setting up notifications - step by step
 
@@ -94,11 +103,12 @@ This diagramme is meant to indicate the steps (from top to bottom) and notificat
 
 - In the grey box on the right hand side, do a secondary (right) mouse click on the word "here" in the sentence "To subscribe to the RSS feed for this search click here". Then click on "Copy Link Location" (or corresponding item) as shown in screenshot below. 
 
-- The clipboard of the computer now contains the link to a newsfeed for this search. It will be used in the next steps. ![copyurl](euctr1.jpg)
+- The clipboard of the computer now contains the link to a newsfeed for this search. It will be used in the next steps.  
+![copyurl](euctr1.jpg)
 
 ## 2. User once configures a notification system (a, b or c)
 
-The following three approaches are *alternatives* for users to select and configure how they want to be notified. 
+The following three approaches are options for users to select and configure how they want to be notified. 
 
 ### a. Email with updates
 
@@ -110,11 +120,15 @@ These notifications are based on services on the internet that offer to generate
 
 - Add the email address to which the notification should be sent. 
 
-- Chose the time interval for notifications (set to daily in the example screenshort below). 
+- Chose the time interval for notifications (set to daily in the example screenshot below). 
 
-- Click on "Feed Me" and note the confirmation box. ![pasteurl](blogtrottr1.jpg)
+- Click on "Feed Me" and note the confirmation box.  
+![pasteurl](blogtrottr1.jpg)
 
-- To control (stop / unsubscribe or change / manage) the notifications, click the relevant link at the bottom of every email from this service. An example is the following screenshot. ![email1](email1.jpg)
+- Starting immediately, email messages will be received for clinical trials that have been added or updated in the register. 
+
+- To control (stop / unsubscribe or change / manage) the notifications, click the relevant link at the bottom of every email from this service. An example is the following screenshot.  
+![email1](email1.jpg)
 
 
 ### b. Actions on smartphone
@@ -125,16 +139,19 @@ For more sophisticated control and personal user experience, other services on t
 
 - Click on "Create Recipe". Click on "this". Scroll down and chose trigger channel "Feed". Click on "New feed item". Paste the contents of the clipboard from step 1. into the box "Feed URL". Click on "Create Trigger". 
 
-- Click on "that". Find and chose action "Email". Click on "Create Action". Click on "Create Recipe". Many other actions are offered by this service such as adding notifications to the iOS Reminders app on a user's smart phone. An overview of this simple example is in the screenshot below. ![ifttt1](ifttt1.jpg)
+- Click on "that". Find and chose action "Email". Click on "Create Action". Click on "Create Recipe". Many other actions are offered by this service such as adding notifications to the iOS Reminders app on a user's smart phone. An overview of this simple example is in the screenshot below.   
+![ifttt1](ifttt1.jpg)
 
 
 ### c. Personalised webpage use
 
 The link to the newsfeed created in step 1 can also be used as follows with other services on the internet, for example: 
 
-- It can be added to a browser-based newsreader such as feedly ([https://feedly.com/i/latest](https://feedly.com/i/latest)), see following screenshot. ![feedly1](feedly1.jpg)
+- It can be added to a browser-based newsreader such as feedly ([https://feedly.com/i/latest](https://feedly.com/i/latest)), see following screenshot.   
+![feedly1](feedly1.jpg)
 
-- It can be added to news apps such as Reeder, see following screenshot. ![reeder1](reeder1.jpg)
+- It can be added to news apps such as Reeder, see following screenshot.  
+![reeder1](reeder1.jpg)
+
 
 End.
-
