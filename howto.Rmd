@@ -4,11 +4,11 @@ title: How to obtain automatically personalised updates from the European Union'
 author: "Ralf Herold"
 date: '`r file.info("howto.Rmd")$mtime`'
 output:
-  word_document:
-    toc: yes
   pdf_document:
     toc: yes
   html_document:
+    toc: yes
+  word_document:
     toc: yes
 params: output_dir = "`r getwd ()`"
 ---
@@ -36,13 +36,13 @@ if(interactive()) {
 
 # Objective and feedback
 
-The purpose of this document is to describe how a user can set up personalised notifications to automatically obtain updates on clinical trials of interest. This is based on protocol-related information that is made publicly available in the EU Clinical Trials Register [EUCTR, https://www.clinicaltrialsregister.eu/](https://www.clinicaltrialsregister.eu/). 
+This document describes how a user can set up personalised notifications to automatically receive update on clinical trials of interest. This is based on protocol-related information that is made publicly available in the EU Clinical Trials Register [EUCTR, https://www.clinicaltrialsregister.eu/](https://www.clinicaltrialsregister.eu/). 
 
-The licence of this documentation (Apache 2.0) can be found [here](https://github.com/rfhb/euctrnotifications/blob/master/LICENSE). The permanent link to the documentation is [https://rawgit.com/rfhb/euctrnotifications/](https://rawgit.com/rfhb/euctrnotifications/). The permanent link to the *docx* document is [https://rawgit.com/rfhb/euctrnotifications/master/howto.docx](https://rawgit.com/rfhb/euctrnotifications/master/howto.docx).
+The licence of this documentation (Apache 2.0) can be found [here](https://github.com/rfhb/euctrnotifications/blob/master/LICENSE). The permanent link to the documentation is [https://github.com/rfhb/euctrnotifications/](https://github.com/rfhb/euctrnotifications/). The permanent link to the *docx* document is [https://rawgit.com/rfhb/euctrnotifications/master/howto.docx](https://rawgit.com/rfhb/euctrnotifications/master/howto.docx).
 
 Suggestions, comments and queries concerning this how-to are welcome. Please click [here](https://github.com/rfhb/euctrnotifications/issues), where you can search for an issue or open a new issue. The author will be automatically informed. 
 
-This how-to can in principle also be used with other trial registers, for example the [U.S. Clinical Trials Register](https://clinicaltrials.gov/ct2/resources/rss#RSSFeedForSpecificSearch). 
+The how-to can in principle be used with other trial registers, for example the [U.S. Clinical Trials Register](https://clinicaltrials.gov/ct2/resources/rss#RSSFeedForSpecificSearch). 
 
 
 # Overview
@@ -99,11 +99,15 @@ These are the steps (top to bottom) and notifications options (squares) describe
 
 ## 1. User once defines relevant trials
 
-- Do a search in the EU Clinical Trials Register, start [here](https://www.clinicaltrialsregister.eu/ctr-search/search). Refine the search until search parameters find relevant trials. For example, this is a search for clinical trials with the paediatric population of orphan-designated investigational medicnal products: [https://www.clinicaltrialsregister.eu/ctr-search/search?query=&age=under-18&orphanimp=true](https://www.clinicaltrialsregister.eu/ctr-search/search?query=&age=under-18&orphanimp=true). 
+- Do a search in the EU Clinical Trials Register, start [here](https://www.clinicaltrialsregister.eu/ctr-search/search). 
 
-- In the grey box on the right hand side, do a secondary (right) mouse click on the word "here" in the sentence "To subscribe to the RSS feed for this search click here". Then click on "Copy Link Location" (or corresponding item) as shown in screenshot below. 
+- Click on "Search tools" to show the "Advanced Search", where age groups and other criteria can be specified. Refine the search until search parameters find relevant trials. 
 
-- The clipboard of the computer now contains the link to a newsfeed for this search. It will be used in the next steps.  
+- For example, this is a search for clinical trials with the paediatric population of orphan-designated investigational medicnal products: [https://www.clinicaltrialsregister.eu/ctr-search/search?query=&age=adolescent&age=children&age=infant-and-toddler&age=newborn&age=preterm-new-born-infants&age=under-18&orphanimp=true](https://www.clinicaltrialsregister.eu/ctr-search/search?query=&age=adolescent&age=children&age=infant-and-toddler&age=newborn&age=preterm-new-born-infants&age=under-18&orphanimp=true). (Note that all paediatric age groups need to be selected for trials with subjects of one or the other age group.) 
+
+- In the grey box on the right hand side, do a secondary (right) mouse click on the word "here" in the sentence "To subscribe to the RSS feed for this search click here". Then click on "Copy Link Location" (Firefox) or "Copy link address" (Chrome) or "Copy shortcut" (Internet explorer) as shown in screenshot below. 
+
+- The clipboard of the computer now contains the link to a newsfeed for this search. It will be used in the next step.  
 ![copyurl](euctr1.jpg)
 
 ## 2. User once configures a notification system (a, b or c)
@@ -112,32 +116,32 @@ The following three approaches are options for users to select and configure how
 
 ### a. Email with updates
 
-These notifications are based on services on the internet that offer to generate emails from a newsfeed such as prepared in step 1. There are a number of such services on the internet, some are free and some do not require registration. An example of a free service is used here to show the principle but other services can be used in a similar way; the example does not imply any recommendation. 
+These notifications are based on services on the internet that offer to send emails from a newsfeed such as prepared in step 1. There are a number of such services, some are free and some do not require registration. An example of a free service is used here to show the principle but other services can be used in a similar way (e.g., [Feed2Mail](https://www.feed2mail.com/)); the example does not imply any recommendation. 
 
 - Open the start page of Blogtrottr ([https://blogtrottr.com/](https://blogtrottr.com/)). 
 
-- Where it reads "http://", paste the content of the clipboard; this replaces all text with the link to the newsfeed generated in the step 1. 
+- Where it reads "http://", paste the content of the clipboard (Windows: Ctrl-v, OS X: Cmd-v); this should replace all text in the box with the link to the newsfeed generated in the step 1. 
 
 - Add the email address to which the notification should be sent. 
 
-- Chose the time interval for notifications (set to daily in the example screenshot below). 
+- Chose the time interval for notifications (set to "Daily"" in the example screenshot below). 
 
 - Click on "Feed Me" and note the confirmation box.  
 ![pasteurl](blogtrottr1.jpg)
 
-- Starting immediately, email messages will be received for clinical trials that have been added or updated in the register. 
+- Starting immediately, email messages will be received for clinical trials that have been *added* or *updated* in the register. 
 
-- To control (stop / unsubscribe or change / manage) the notifications, click the relevant link at the bottom of every email from this service. An example is the following screenshot.  
+- To control (stop / unsubscribe or change / manage) the notifications, click the relevant link at the bottom of any email from this service. An example is the following screenshot.  
 ![email1](email1.jpg)
 
 
 ### b. Actions on smartphone
 
-For more sophisticated control and personal user experience, other services on the internet can be used. An example is [IFTTT](https://ifttt.com/), which allows to trigger a range of complex actions on different devices. However, this service also can send emails in the same way as described above, and this is shown in this step as a minimalistic example. This service is used for the example here; note it requires registration. 
+For more sophisticated control and personal user experience, other services on the internet can be used. An example is [IFTTT](https://ifttt.com/), which allows to trigger a range of complex actions on different devices such as smartphones or message boards. However, this service also can send emails in the same way as described above, and this is shown in this step as a minimal example. This service is used for the example here; note it requires registration. 
 
 - Open the start page of IFTTT ([https://ifttt.com/](https://ifttt.com/)) and sign in or sign up, if not yet registered. 
 
-- Click on "Create Recipe". Click on "this". Scroll down and chose trigger channel "Feed". Click on "New feed item". Paste the contents of the clipboard from step 1. into the box "Feed URL". Click on "Create Trigger". 
+- Click on "Create Recipe". Click on "this". Scroll down and chose trigger channel "Feed". Click on "New feed item". Paste the contents of the clipboard from step 1. into the box "Feed URL" (Windows: Ctrl-v, OS X: Cmd-v). Click on "Create Trigger". 
 
 - Click on "that". Find and chose action "Email". Click on "Create Action". Click on "Create Recipe". Many other actions are offered by this service such as adding notifications to the iOS Reminders app on a user's smart phone. An overview of this simple example is in the screenshot below.   
 ![ifttt1](ifttt1.jpg)
